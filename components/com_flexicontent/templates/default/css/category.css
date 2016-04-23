@@ -1,0 +1,36 @@
+.subcategorieslist {
+	margin: 0 0 1em;
+}
+#fc_alpha .btn.fc_alpha_index,
+#fc_alpha .btn.fc_alpha_index_sep {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.group:before,
+.group:after {
+	content: " ";
+	display: table;
+}
+.group:after {
+	clear: both;
+}
+.fc_item_title a {
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 16px;
+}
+.fc_title_row_box {
+	display: inline-block;
+	float: left;
+	max-width: 100%;
+	padding: 0%;
+	margin-left: 16px;
+}
+.fc_item_separator_row {
+	display: block;
+	clear: both;
+	height: 40px;
+	border: 0px solid;
+}

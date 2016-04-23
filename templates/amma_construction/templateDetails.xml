@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="template" client="site" method="upgrade">
+	<name>amma_construction</name>
+	<files>
+		<filename>templateDetails.xml</filename>
+        <filename>template_preview.png</filename>
+        <filename>template_thumbnail.png</filename>
+		<filename>index.php</filename>
+        <filename>style.css</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>windows</folder>
+	</files>
+    <positions>
+        <position>brand</position>
+        <position>mainmenu_above</position>
+        <position>mainmenu_links</position>
+        <position>slider</position>
+        <position>slider_message</position>
+        <position>features</position>
+        <position>service_module</position>
+        <position>main_message</position>
+        <position>recent_listings</position>
+        <position>recent_projects</position>
+        <position>recent_projects_menu</position>
+        <position>footer_a</position>
+        <position>footer_b</position>
+        <position>footer_c</position>
+        <position>footer_d</position>
+        <position>copyright</position>
+        <position>dev_tag</position>
+        <position>sidebar</position>
+        <position>content</position>
+    </positions>
+    <config>
+        <fields name="params">
+            <fieldset name="general" label="General">
+                <field name="logo_text" 
+                    type="text" 
+                    label="Logo Text"
+                    description="Enter Your Company Name Here"
+                />
+                <field name="copyright_text" 
+                    type="text" 
+                    label="Copyright Text"
+                    description="Enter Your Copyright"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
