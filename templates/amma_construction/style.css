@@ -63,16 +63,71 @@ img {
 }
 
 
+
+
+/* --------------------------------------
+ * RESPONSIVE
+ * -------------------------------------- */
+@media (max-width: 768px)  and (orientation: portrait) { /* TARGET PHONE ONLY */
+  .inner {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px)  and (orientation: portrait) { /* EVERYTHING IN BETWEEN */
+  .inner {
+    width: 90%;
+  }
+  
+  .listing-item {
+    width: 100%;
+  }
+}
+
+/*
+	ORITENTATION LANDSCAPE
+*/
+@media (max-width: 768px)  and (orientation: landscape) { /* TARGET PHONE ONLY */
+  .inner {
+    width: 90%;
+  }
+  
+  .listing-item {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px)  and (orientation: landscape) { /* EVERYTHING IN BETWEEN */
+  .inner {
+    width: 90%;
+  }
+  
+  .listing-item {
+      width: 32%;
+  }
+}
+
+@media (min-width: 992px) { /* DESKTOP ONLY */
+  .inner {
+    width: 90%;
+  }
+  
+  .listing-item {
+      width: 32.3%;
+  }
+}
+
 /* --------------------------------------
  * HELPERS
  * -------------------------------------- */
 
+.hidden { display: none; visibility: hidden; }
+.show { display: block; visibility: visible; }
 .page-container {
   position: relative;
   width: 100%;
 }
 .inner {
-  width: 960px;
   margin: 0 auto;
 }
 
@@ -136,6 +191,8 @@ img {
     position: absolute;
 }
 
+.closed { color: #c0392b; }
+
 /* --------------------------------------
  * MAIN MENU
  * -------------------------------------- */
@@ -146,6 +203,7 @@ img {
     top: 0;
     z-index: 2;
     background-color: black;
+    visibility: visible;
 }
 
 .home-page .menu-overlay {
@@ -161,7 +219,8 @@ img {
 }
 
 .mainmenu {
-  text-align: right;
+  text-align: left;
+  float: right;
 }
 
 .mainmenu > .menu-link a { color: #ecebee; }
@@ -169,7 +228,7 @@ img {
     text-decoration: none;
     color: #FAB702;
 }
-.mainmenu .menu-link { float: left; }
+
 .mainmenu li.menu-link:not(last-child) {
     padding-right: 8px;
 }
@@ -408,6 +467,16 @@ span.tag-bottom {
 
 
 /* --------------------------------------
+ * SERVICES MODULE SECTION
+ * -------------------------------------- */
+
+.icon-media {
+    float: left;
+    margin-right: 20px;
+}
+
+
+/* --------------------------------------
  * MESSAGES SECTION
  * -------------------------------------- */
 
@@ -442,7 +511,7 @@ span.tag-bottom {
 .main-message-body {
     font-size: 18px;
     line-height: 1.42857;
-    color: #5A5A5A;
+    color: #32333A;
 }
 
 /* --------------------------------------
@@ -450,7 +519,28 @@ span.tag-bottom {
  * -------------------------------------- */
 
 .recent-listings-container {
+  position: relative;
   background-color: #F8F9F9;
+  padding: 100px 0;
+}
+
+.listing-group {
+    position: relative;
+}
+
+.listing-item {
+    background-color: white;
+    border: 1px solid #cecece;
+    float: left;
+    height: 400px;
+    padding: 20px;
+    padding-bottom: 20px;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+.listing-item:nth-child(1), .listing-item:nth-child(2), .listing-item:nth-child(3) {
+  margin-top: 0;
 }
 
 
@@ -461,6 +551,15 @@ span.tag-bottom {
 .recent-projects-container {
   position: relative;
   background-color: #646464;
+}
+
+.recent-projects-item-inner {
+    background-color: white;
+    border: 1px solid #cecece;
+}
+
+.recent-projects .title {
+    color: white;
 }
 
 .recent-projects-nav {
@@ -506,17 +605,107 @@ span.tag-bottom {
   z-index: -1;
 }
 
-.footer-wrapper div[class*="footer-"] {
+.footer-wrapper div[class*="custom footer-"] {
     margin-top: 40px;
+}
+
+.footer .title {
+  margin-bottom: 50px;
+}
+
+.footer .logo {
+  max-width: 210px;
+}
+.footer img.logo-img {
+  float: left;
+  width: 60px;
+}
+
+.footer .footer-brand {
+    text-align: justify;
+}
+
+.footer .tag {
+    letter-spacing: .2em;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+.footer .tag-bottom {
+    font-size: 8px;
+    letter-spacing: normal;
+    text-align: left;
+    margin-top: -10px;
+    float: right;
+}
+
+.footer-about-body {
+  float: left;
+  margin-top: 20px;
+}
+
+
+
+.footer-nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-nav-link {
+  padding: 0;
+  margin: 0;
+  width: 48%;
+  display: flex;
+}
+
+.footer-nav-link,
+.footer-nav-links a.nav-link {
+  color: #9C9C9C;
+  list-style: none;
+}
+
+.footer-nav-chevron,
+.footer-nav-link {
+  float: left;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.footer-nav-chevron {
+  margin-top: 4px;
+}
+
+.footer-office-info .footer-address .clear-icon {
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+.footer-address div { padding: 2px 19px; }
+
+.footer-phone div, .footer-fax div {
+    padding: 2px 75px 2px 20px
+}
+.footer .time {
+    margin-left: 14px;
+}
+
+.footer .get-directions {
+    padding: 0;
+    margin-top: 10px;
 }
 
 .copyright {
     display: inline-block;
-    margin-top: 60px;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
     font-size: 12px;
     opacity: 0.3;
 }
+
 
 /* --------------------------------------
  * DEV BRAND
@@ -541,6 +730,12 @@ span.tag-bottom {
   text-align: center;
 }
 
+.dev-link {
+  position: relative;
+  bottom: 50px;
+  left: 46.4%
+}
+
 .dev-link:after {
     content: "";
     position: absolute;
@@ -548,19 +743,18 @@ span.tag-bottom {
     width: 50px;
     height: 50px;
     top: -20px;
-    margin-left: 47.7%;
     border-radius: 50px;
     z-index: -1;
 }
 
 .dev-chevron {
     position: absolute;
-    width: 99.2%;
     margin: 0 auto;
-    text-align: center;
     top: -6px;
+    left: 15px;
     z-index: 1;
     color: #FBA83C;
+    text-align: center;
 }
 
 span.dev-by {
@@ -725,6 +919,7 @@ span.dt-secondary {
   border: none;
   color: white;
   font-size: 12px;
+      text-align: left;
 }
 
 .clear-icon,
@@ -797,4 +992,5 @@ button.clear-btn:focus {
   left: calc(50% - 37px);
 }
 
-
+/*Flexi Fix*/
+#fc_filter_form_blocker { display: none; visibility: hidden; }

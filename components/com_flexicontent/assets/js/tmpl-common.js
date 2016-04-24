@@ -99,7 +99,7 @@
 				var fc_filter_form_blocker = jQuery("#fc_filter_form_blocker");
 				form.submit( task );
 				if (fc_filter_form_blocker) {
-					fc_filter_form_blocker.css("display", "block");
+					fc_filter_form_blocker.css("display", "none");
 					fc_progress(95, jQuery('#fc_filter_form_blocker .fc_blocker_bar'));
 				}
 			} else if (postprep==1) {

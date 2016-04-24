@@ -17,15 +17,18 @@
    $path = JURI::base(true).'/templates/'.$app->getTemplate().'/';
    $page = str_replace( " ", "-", strtolower( $this->title ) ) . "-page";
    
-   // jQuery
-   $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/jquery-2.1.0.min.js', 'text/javascript');
    // Primary Styles
    $doc->addStyleSheet(JUri::base() . 'templates/' . $this->template . '/css/bootstrap.min.css', $type = 'text/css', $media = 'screen,projection');
    $doc->addStyleSheet(JUri::base() . 'templates/' . $this->template . '/style.css', $type = 'text/css', $media = 'screen,projection');
    // Font Awesome
    // $doc->addStyleSheet(JUri::base() . 'templates/' . $this->template . '/css/font-awesome.css', $type = 'text/css', $media = 'screen,projection');
+   
+   // jQuery
+   $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/jquery-2.1.0.min.js', 'text/javascript');
    // BootStrap JS
    $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/bootstrap.min.js', 'text/javascript');
+   // jQuery
+   $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/scripts.js', 'text/javascript');
 
 ?>
 <!DOCTYPE html>
@@ -90,6 +93,13 @@
       </div>
       <?php endif; ?>
       <?php endif; ?>
+      <?php if ($this->countModules('main_message')) : ?>
+      
+      <div class="main-message">
+         <jdoc:include type="modules" name="main_message" style="none" />
+         <img class="bg" src="http://amma-techninja.c9users.io/images/amma/assets/construction-male-banner.jpg" alt="">
+      </div>
+      <?php endif; ?>
       <?php if ($this->countModules('service_module')) : ?>
       
       <div class="services-module-container">
@@ -100,13 +110,6 @@
          
          <jdoc:include type="component" />
       </div>
-      <?php if ($this->countModules('main_message')) : ?>
-      
-      <div class="main-message">
-         <jdoc:include type="modules" name="main_message" style="none" />
-         <img class="bg" src="http://amma-techninja.c9users.io/images/amma/assets/construction-male-banner.jpg" alt="">
-      </div>
-      <?php endif; ?>
       <?php if ($this->countModules('recent_projects')) : ?>
       <div class="recent-projects-container">
        
@@ -154,7 +157,7 @@
       <?php if ($this->countModules('dev_tag')) : ?>
          <div class="dev-tag-wrapper">
             <jdoc:include type="modules" name="dev_tag" style="none" />
-            <a href class="dev-link">
+            <a href="#" class="dev-link">
                <i class="dev-chevron fa fa-lg fa-chevron-up"></i>
             </a>
          </div>
@@ -164,91 +167,45 @@
  
       <jdoc:include type="modules" name="debug" style="none" />
    </div>
-   <!-- Absolute Naviation Fix -->
-   <script type="text/javascript">
-      /////////////////////////////////////////////////////////////////////////////
-      //  Menu Overlay
-      /////////////////////////////////////////////////////////////////////////////
-      var pageClasses = Array.prototype.slice.call( document.body.classList );
-      var isHome = pageClasses.indexOf('home-page') >= 0 ? true : false;
-      
-      
-      
-      document.addEventListener('scroll', function(e) {
-         var screenOffset = document.body.offsetHeight,
-            yPos = window.scrollY,
-            winHeight = window.innerHeight,
-            overlay = document.querySelector('.menu-overlay'),
-            dev_tag = document.querySelector('.dev-tag-wrapper');
-         
-         // Menu Overlay
-         if (isHome) menuOverlay(yPos, overlay);
-         // Branding
-         DevBrand(yPos, dev_tag, screenOffset, winHeight);
-      });
-      
-      function menuOverlay(yPos, overlay){
-         // Reactive Menu
-         if (yPos > 100) setVisibility(overlay, 'visible');
-         if (yPos < 100) setVisibility(overlay, 'hidden');
-      }
-      
-      function DevBrand(yPos, dev_tag, screenOffset, win){
-         // Reactive Dev Tag
-         var factor = .98;
-         
-         console.log(["Eval", (yPos + win) > screenOffset * factor, "start val", (yPos + win), "greater than", screenOffset * factor, "Win", win]);
-         if ((yPos + win) > screenOffset * factor) setVisibility(dev_tag, 'visible');
-         if ((yPos + win) < screenOffset * factor) setVisibility(dev_tag, 'hidden');
-      }
-         
-      function toggleMenuOverlay(el) {
-         // Get Visibility
-         var visibility = determinieVisibility(el);
-         // Get Toggle State
-         var action = getAction(visibility);
-         // Set Color
-         setColor(el);
-         // Set Visiblity
-         setVisibility(el, action);
-
-         return "Done!";
-      }
-
-      function determinieVisibility(el) {
-         // console.log('Determining Visibility', el);
-         switch (el.style.visibility) {
-            case 'visible':
-               return el.style.visibility;
-            case 'hidden':
-               return el.style.visibility;
-            case '':
-               return 'visible';
-            default:
-               return 'Cannot determine visibility';
-         }
-      }
-
-      function getAction(action) {
-         var states = ['visible', 'hidden'];
-         return states
-            .map(function(e) {
-               return e !== action ? e : null;
-            })
-            .filter(function(e) {
-               if (e) return e;
-            })[0];
-      }
-
-      function setVisibility(el, visibility) {
-         return el.style.visibility = visibility;
-      }
-
-      function setColor(el, color) {
-         return el.style.backgroundColor = color;
-      }
-      
-          
+   
+   <script class="menu-overlay-script">
+       /////////////////////////////////////////////////////////////////////////////
+       //  Menu Overlay
+       /////////////////////////////////////////////////////////////////////////////
+       var pageClasses = Array.prototype.slice.call(document.body.classList);
+       var isHome = pageClasses.indexOf('home-page') >= 0 ? true : false;
+   
+       document.addEventListener('scroll', function(e) {
+           var screenOffset = document.body.offsetHeight,
+               yPos = window.scrollY,
+               winHeight = window.innerHeight,
+               overlay = document.querySelector('.menu-overlay'),
+               dev_tag = document.querySelector('.dev-tag-wrapper');
+   
+           // Menu Overlay
+           if (isHome) menuOverlay(yPos, overlay);
+           // Branding
+           DevBrand(yPos, dev_tag, screenOffset, winHeight);
+       });
+   
+       function menuOverlay(yPos, overlay) {
+           // Reactive Menu
+           if (yPos > 100) setVisibility(overlay, 'visible');
+           if (yPos < 100) setVisibility(overlay, 'hidden');
+       }
+   
+       function DevBrand(yPos, dev_tag, screenOffset, win) {
+           // Reactive Dev Tag
+           var factor = .98;
+   
+           // console.log(["Eval", (yPos + win) > screenOffset * factor, "start val", (yPos + win), "greater than", screenOffset * factor, "Win", win]);
+           if ((yPos + win) > screenOffset * factor) setVisibility(dev_tag, 'visible');
+           if ((yPos + win) < screenOffset * factor) setVisibility(dev_tag, 'hidden');
+       }
+   
+       function setVisibility(el, visibility) {
+           return el.style.visibility = visibility;
+       }
    </script>
 </body>
 
