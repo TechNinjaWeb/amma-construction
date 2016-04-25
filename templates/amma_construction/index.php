@@ -24,7 +24,8 @@
    // $doc->addStyleSheet(JUri::base() . 'templates/' . $this->template . '/css/font-awesome.css', $type = 'text/css', $media = 'screen,projection');
    
    // jQuery
-   $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/jquery-2.1.0.min.js', 'text/javascript');
+   // $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/jquery-2.1.0.min.js', 'text/javascript');
+   $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/jquery.js', 'text/javascript');
    // BootStrap JS
    $doc->addScript($this->baseurl . 'templates/' . $this->template . '/js/bootstrap.min.js', 'text/javascript');
    // jQuery
@@ -157,9 +158,35 @@
       <?php if ($this->countModules('dev_tag')) : ?>
          <div class="dev-tag-wrapper">
             <jdoc:include type="modules" name="dev_tag" style="none" />
-            <a href="#" class="dev-link">
-               <i class="dev-chevron fa fa-lg fa-chevron-up"></i>
+            <a class="dev-link">
+               <i class="dev-chevron fa fa-lg fa-chevron-up rotate"></i>
             </a>
+            <div class="dev-link-page-wrapper">
+               <div class="col-xs-6 brand-info">
+                  <div class="brand-logo">
+                     <div class="logo"><span class="dev-primary">tech</span> <span class="dev-secondary">ninja</span><span class="dev-serv"> | Web &amp; IT</span></div>
+                     <hr class="hr_divide">
+                     <div class="dev-slogan">Leave The Web To Us!</div>
+                     <div class="dev-info">
+                        We Are A Modern Design &amp; Development Studio Serving Clients All Across Canada.
+                     </div>
+                     <ul class="dev-contact-bar list-inline list-unstyled">
+                        <li class="facebook"><a href="#" class="fb-link"><i class="fa fa-lg fa-facebook"></i></a></li>
+                        <li class="twitter"><a href="#" class="twitter-link"><i class="fa fa-lg fa-twitter"></i></a></li>
+                        <li class="google"><a href="#" class="google-link"><i class="fa fa-lg fa-google-plus"></i></a></li>
+                        <li class="youtube"><a href="#" class="youtube-link"><i class="fa fa-lg fa-youtube"></i></a></li>
+                        <li class="laptop"><a href="#" class="laptop-link"><i class="fa fa-lg fa-laptop"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-xs-6 contact-form">
+                  <h3 class="dev-contact primary-color form-group">Contact Us Today!</h3>
+                  <input type="text" class="dev-name form-control" placeholder="Enter Your Name">
+                  <input type="email" class="dev-email form-control" placeholder="Enter Your Email">
+                  <textarea name="dev-comments form-control" id="dev-comments" rows="3" placeholder="Got Questions?"></textarea>
+                  <button class="btn btn-primary dev-send">Send</button>
+               </div>
+            </div>
          </div>
       <?php endif; ?>
    </div>
